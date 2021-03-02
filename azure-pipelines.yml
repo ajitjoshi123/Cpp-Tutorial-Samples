@@ -1,19 +1,20 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
-trigger:
-- master
-
-pool:
-  vmImage: ubuntu-latest
-
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+variables:
+  COVERITY_TOOL_HOME: 'c:/tools/coverity/analysis/2020.06'
+ 
+jobs:
+- job: Coverity
+  pool:
+    name: private-windows
+  workspace:
+    clean: all
+  steps:
+  - task: synopsys-coverity.synopsys-coverity-azure-devops.coverity-task.synopsys-coverity@1
+    displayName: 'Synopsys Coverity Plugin'
+    inputs:
+      coverityService: 'Coverity-http'
+      projectName: 'hello-java'
+      streamName: 'hello-java'
+      checkIssues: true
+      issueView: 'Outstanding Issues'
+      buildCommand: 'mvn -B clean package -DskipTests'
+      allowUntrusted: true
