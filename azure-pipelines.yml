@@ -1,9 +1,5 @@
 variables:
-- task: SynopsysPolaris@1
-  inputs:
-    polarisService: 'Polaris connection'
-    polarisCommand: 'analyze -w'
-  COVERITY_TOOL_HOME: 'c:/tools/coverity/analysis/2020.06'
+- 
  
 jobs:
 - job: Coverity
@@ -22,3 +18,8 @@ jobs:
       issueView: 'Outstanding Issues'
       buildCommand: 'mvn -B clean package -DskipTests'
       allowUntrusted: true
+  - task: SynopsysPolaris@1
+    inputs:
+      polarisService: 'Polaris connection'
+      polarisCommand: 'analyze -w'
+    COVERITY_TOOL_HOME: 'c:/tools/coverity/analysis/2020.06'
