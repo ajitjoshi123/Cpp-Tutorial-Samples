@@ -1,5 +1,4 @@
 variables:
-- 
  
 jobs:
 - job: Coverity
@@ -22,4 +21,3 @@ jobs:
     inputs:
       polarisService: 'Polaris connection'
       polarisCommand: 'analyze -w'
-    COVERITY_TOOL_HOME: 'c:/tools/coverity/analysis/2020.06'
