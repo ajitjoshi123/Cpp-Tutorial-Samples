@@ -1,5 +1,4 @@
 variables:
- 
 jobs:
 - job: Coverity
   pool:
