@@ -5,16 +5,6 @@ jobs:
   workspace:
     clean: all
   steps:
-  - task: synopsys-coverity.synopsys-coverity-azure-devops.coverity-task.synopsys-coverity@1
-    displayName: 'Synopsys Coverity Plugin'
-    inputs:
-      coverityService: 'Coverity-http'
-      projectName: 'hello-java'
-      streamName: 'hello-java'
-      checkIssues: true
-      issueView: 'Outstanding Issues'
-      buildCommand: 'mvn -B clean package -DskipTests'
-      allowUntrusted: true
   - task: SynopsysPolaris@1
     inputs:
       polarisService: 'Polaris connection'
